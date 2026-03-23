@@ -16,7 +16,7 @@ function Home() {
           </h1>
 
           <p className="text-gray-600 text-lg mb-6">
-            I build modern, responsive web applications using React and JavaScript.
+            I build real-world React applications with clean UI, API integration, and state management.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
