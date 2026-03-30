@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom'
 function Project() {
   const projects = [
     {
+      title: "Linkdin Post Generator (React)",
+      image: "/LinkdinPostGenerator.png",
+      desc: "AI-powered LinkedIn Post Generator built with React.Helps developers write better posts by:- Adapting tone (casual, professional, story)- Remembering previous posts for continuity- Allowing custom intent-based generation- Supporting multi-post generation with word control Focus: solving consistency and repetition issues while posting on LinkedIn.",
+      tech: "React, Tailwind, OpenRouter API (LLM integration)",
+      github: "https://github.com/Sarthak050205/linkedin-post-generator",
+      live: "https://linkedin-post-generator-silk.vercel.app",
+      path: "/project/linkedin-post-generator"
+    },
+    {
       title: "Weather App (React)",
       image: "/weather-react.png",
       desc: "Fetches real-time weather data using API with loading and error handling.",

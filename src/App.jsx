@@ -13,6 +13,7 @@ import WeatherJs from "./Component/Content/projectDetails/WeatherJs"
 import TodoJs from "./Component/Content/projectDetails/TodoJs"
 import TicTacToeJs from "./Component/Content/projectDetails/TicTacToejs"
 import NetflixClone from "./Component/Content/projectDetails/NetflixClone"
+import LinkdinPostGenerator from "./Component/Content/projectDetails/LinkdinPostGenerator"
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
         <Route path='contact' element={<Contact />} />
         <Route path='project' element={<Project />} />
 
+        <Route path='project/linkdin-post-generator' element={<LinkdinPostGenerator />} />
         <Route path='project/weather-react' element={<WeatherReact />} />
         <Route path='project/todo-react' element={<TodoReact />} />
         <Route path='project/weather-js' element={<WeatherJs />} />
