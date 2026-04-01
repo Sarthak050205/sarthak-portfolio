@@ -2,29 +2,55 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const timeline = [
-  { year: '2024', label: 'Started learning React', desc: 'Dived deep into component architecture, hooks, and state management.' },
-  { year: '2024', label: 'Built first API project', desc: 'Created a weather app using vanilla JavaScript and external REST APIs.' },
-  { year: '2025', label: 'React ecosystem mastery', desc: 'Built complex projects using Context API, React Router, and Tailwind CSS.' },
-  { year: '2025', label: 'AI-powered apps', desc: 'Shipped a LinkedIn Post Generator integrating OpenRouter LLM API.' },
+  { 
+    year: 'Aug 2025', 
+    label: 'Started web development', 
+    desc: 'Began learning HTML, CSS, and JavaScript, focusing on building strong fundamentals and understanding how the web works.' 
+  },
+  { 
+    year: 'Sep 2025', 
+    label: 'Built first projects', 
+    desc: 'Created basic projects like Todo App and small UI components to strengthen core JavaScript concepts.' 
+  },
+  { 
+    year: 'Dec 2025', 
+    label: 'Moved to React', 
+    desc: 'Started learning React, understanding components, hooks, and building interactive UIs.' 
+  },
+  { 
+    year: 'Jan 2026', 
+    label: 'Real-world projects', 
+    desc: 'Built applications like Weather App with API integration and improved UI/UX skills.' 
+  },
+  { 
+    year: 'Mar 2026', 
+    label: 'Advanced React learning', 
+    desc: 'Worked with Context API, React Router, and improved project structure for scalability.' 
+  },
+  { 
+    year: 'Now', 
+    label: 'Building & improving', 
+    desc: 'Developing LinkedIn Post Generator, learning DSA, and preparing for frontend internships.' 
+  }
 ]
 
 const cards = [
   {
     icon: '⚡',
     title: 'Development',
-    desc: 'Building responsive, interactive web applications with modern React and clean code principles.',
+    desc: 'Building responsive and scalable React applications with clean, maintainable code.',
     color: '#f97316',
   },
   {
     icon: '📐',
     title: 'Design Sense',
-    desc: 'Obsessed with clean UI, pixel-perfect layouts, and delightful micro-interactions.',
+    desc: 'Focused on clean UI, smooth user experience, and modern design practices.',
     color: '#8b5cf6',
   },
   {
     icon: '🎯',
     title: 'Growth Mindset',
-    desc: 'Leveling up in DSA, exploring backend fundamentals, and shipping projects consistently.',
+    desc: 'Continuously learning DSA, exploring backend basics, and improving daily.',
     color: '#0ea5e9',
   },
 ]
@@ -51,7 +77,7 @@ function About() {
           </h1>
         </div>
 
-        {/* Grid: bio + photo */}
+        {/* Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 340px',
@@ -61,13 +87,15 @@ function About() {
         }}>
           <div>
             <p style={{ fontSize: 18, color: 'var(--clr-text)', lineHeight: 1.8, marginBottom: 20 }}>
-              I'm <strong style={{ color: '#fff' }}>Sarthak Kumar Lohani</strong>, a frontend developer from India who enjoys building applications that are both technically sound and beautiful to use.
+              I'm <strong style={{ color: '#fff' }}>Sarthak Kumar Lohani</strong>, a frontend developer who builds modern web applications using React.
             </p>
+
             <p style={{ fontSize: 16, color: 'var(--clr-muted)', lineHeight: 1.8, marginBottom: 20 }}>
-              My journey started with vanilla JavaScript and HTML/CSS, gradually progressing into the React ecosystem. I focus on writing clean, maintainable code — not just making things work, but making them work <em style={{ color: 'var(--clr-text)' }}>well</em>.
+              I focus on creating clean UI, writing maintainable code, and building projects that solve real-world problems.
             </p>
+
             <p style={{ fontSize: 16, color: 'var(--clr-muted)', lineHeight: 1.8, marginBottom: 32 }}>
-              Outside of coding, I'm improving my problem-solving through DSA, exploring new tech, and looking for internships where I can contribute meaningfully.
+              Currently, I’m improving my problem-solving skills with DSA and looking for opportunities where I can learn and contribute.
             </p>
 
             <div style={{ display: 'flex', gap: 12 }}>
@@ -87,7 +115,8 @@ function About() {
               >
                 LinkedIn ↗
               </a>
-              <Link to="/project" style={{
+
+              <Link to="/projects" style={{
                 padding: '10px 22px',
                 border: '1px solid rgba(255,255,255,0.15)',
                 color: '#fff',
@@ -114,7 +143,7 @@ function About() {
                 style={{ width: '100%', display: 'block', objectFit: 'cover', aspectRatio: '4/5' }}
               />
             </div>
-            {/* Floating stat */}
+
             <div style={{
               position: 'absolute',
               bottom: -16,
@@ -124,7 +153,7 @@ function About() {
               borderRadius: 16,
               padding: '16px 20px',
             }}>
-              <p style={{ fontSize: 28, fontWeight: 800, color: 'var(--clr-accent)', fontFamily: 'var(--font-display)', margin: 0 }}>7+</p>
+              <p style={{ fontSize: 28, fontWeight: 800, color: 'var(--clr-accent)', margin: 0 }}>7+</p>
               <p style={{ fontSize: 13, color: 'var(--clr-muted)', margin: 0 }}>Projects shipped</p>
             </div>
           </div>
@@ -152,8 +181,8 @@ function About() {
               }}>
                 {c.icon}
               </div>
+
               <h3 style={{
-                fontFamily: 'var(--font-display)',
                 fontSize: 18,
                 fontWeight: 700,
                 color: '#fff',
@@ -161,7 +190,8 @@ function About() {
               }}>
                 {c.title}
               </h3>
-              <p style={{ color: 'var(--clr-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+
+              <p style={{ color: 'var(--clr-muted)', fontSize: 14 }}>
                 {c.desc}
               </p>
             </div>
@@ -171,55 +201,25 @@ function About() {
         {/* Timeline */}
         <div>
           <h2 style={{
-            fontFamily: 'var(--font-display)',
             fontSize: 28,
             fontWeight: 800,
             color: '#fff',
-            letterSpacing: '-0.02em',
             marginBottom: 36,
           }}>
             My Journey
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {timeline.map((t, i) => (
-              <div key={i} style={{ display: 'flex', gap: 24, paddingBottom: 32, position: 'relative' }}>
-                {/* Line */}
-                {i < timeline.length - 1 && (
-                  <div style={{
-                    position: 'absolute',
-                    left: 15,
-                    top: 32,
-                    bottom: 0,
-                    width: 1,
-                    background: 'rgba(255,255,255,0.08)',
-                  }} />
-                )}
-                {/* Dot */}
-                <div style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: '50%',
-                  background: 'var(--clr-surface2)',
-                  border: '2px solid rgba(249,115,22,0.4)',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  zIndex: 1,
-                }}>
-                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--clr-accent)' }} />
-                </div>
-                <div>
-                  <span style={{ fontSize: 11, color: 'var(--clr-accent)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                    {t.year}
-                  </span>
-                  <h4 style={{ color: '#fff', fontWeight: 600, fontSize: 16, margin: '4px 0 6px' }}>{t.label}</h4>
-                  <p style={{ color: 'var(--clr-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{t.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+
+          {timeline.map((t, i) => (
+            <div key={i} style={{ marginBottom: 24 }}>
+              <span style={{ color: 'var(--clr-accent)', fontSize: 12 }}>
+                {t.year}
+              </span>
+              <h4 style={{ color: '#fff', margin: '4px 0' }}>{t.label}</h4>
+              <p style={{ color: 'var(--clr-muted)' }}>{t.desc}</p>
+            </div>
+          ))}
         </div>
+
       </div>
     </div>
   )
