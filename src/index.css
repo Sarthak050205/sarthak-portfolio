@@ -1,1 +1,112 @@
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --clr-accent: #f97316;
+  --clr-accent-light: #fed7aa;
+  --clr-dark: #0d0d0d;
+  --clr-surface: #141414;
+  --clr-surface2: #1e1e1e;
+  --clr-border: rgba(255,255,255,0.08);
+  --clr-text: #e8e8e8;
+  --clr-muted: #888;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--clr-dark);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--clr-dark); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-accent); }
+
+/* Selection */
+::selection {
+  background: var(--clr-accent);
+  color: #fff;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: pageIn 0.45s ease forwards;
+}
+
+@keyframes pageIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--clr-accent), #fb923c, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Noise overlay for depth */
+.noise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Card */
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 16px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Tag pill */
+.tag {
+  display: inline-block;
+  padding: 3px 12px;
+  background: rgba(249, 115, 22, 0.12);
+  color: var(--clr-accent);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Animate on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

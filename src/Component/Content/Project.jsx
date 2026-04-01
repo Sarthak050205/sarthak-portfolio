@@ -1,147 +1,267 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+const projects = [
+  {
+    title: 'LinkedIn Post Generator',
+    image: '/LinkdinPostGenerator.png',
+    desc: 'AI-powered generator that adapts tone (casual, professional, story), remembers previous posts, and supports multi-post batch creation.',
+    tech: ['React', 'Tailwind', 'OpenRouter API'],
+    github: 'https://github.com/Sarthak050205/linkedin-post-generator',
+    live: 'https://linkedin-post-generator-silk.vercel.app',
+    path: '/project/linkdin-post-generator',
+    category: 'React',
+    featured: true,
+  },
+  {
+    title: 'Weather App (React)',
+    image: '/weather-react.png',
+    desc: 'Fetches real-time weather data with loading states and robust error handling.',
+    tech: ['React', 'Tailwind', 'API'],
+    github: 'https://github.com/Sarthak050205/weather-app-react',
+    live: 'https://weather-app-react-virid-three.vercel.app',
+    path: '/project/weather-react',
+    category: 'React',
+  },
+  {
+    title: 'Todo App (Context API)',
+    image: '/todo-react.png',
+    desc: 'Full-featured task manager with add, edit, delete, and completion state via Context API.',
+    tech: ['React', 'Context API'],
+    github: 'https://github.com/Sarthak050205/todo-context-api',
+    live: 'https://todo-context-api-deploy.vercel.app',
+    path: '/project/todo-react',
+    category: 'React',
+  },
+  {
+    title: 'Weather App (JavaScript)',
+    image: '/weather-js.png',
+    desc: 'Vanilla JavaScript weather application with real-time API data and clean UI.',
+    tech: ['JavaScript', 'API'],
+    github: 'https://github.com/Sarthak050205/weather-app-js',
+    live: 'https://weather-app-js-ivory.vercel.app/',
+    path: '/project/weather-js',
+    category: 'JavaScript',
+  },
+  {
+    title: 'Todo App (JavaScript)',
+    image: '/todo-js.png',
+    desc: 'Clean, minimal todo app with add and delete functionality.',
+    tech: ['JavaScript'],
+    github: 'https://github.com/Sarthak050205/Todo-app-js',
+    live: 'https://todo-app-js-pink.vercel.app/',
+    path: '/project/todo-js',
+    category: 'JavaScript',
+  },
+  {
+    title: 'Tic Tac Toe',
+    image: '/tictactoe.png',
+    desc: 'Classic game with interactive UI, win detection, and restart functionality.',
+    tech: ['JavaScript'],
+    github: 'https://github.com/Sarthak050205/Tic-Tac-Toe-JS',
+    live: 'https://tic-tac-toe-js-sigma.vercel.app/',
+    path: '/project/tictactoe',
+    category: 'JavaScript',
+  },
+  {
+    title: 'Netflix Clone',
+    image: '/netflix.png',
+    desc: 'Pixel-perfect UI clone of Netflix homepage with responsive layout.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/Sarthak050205/Netflix-clone',
+    live: 'https://netflix-clone-three-xi-57.vercel.app/',
+    path: '/project/netflix',
+    category: 'HTML/CSS',
+  },
+]
+
+const filters = ['All', 'React', 'JavaScript', 'HTML/CSS']
+
 function Project() {
-  const projects = [
-    {
-      title: "Linkdin Post Generator (React)",
-      image: "/LinkdinPostGenerator.png",
-      desc: "AI-powered LinkedIn Post Generator built with React.Helps developers write better posts by:- Adapting tone (casual, professional, story)- Remembering previous posts for continuity- Allowing custom intent-based generation- Supporting multi-post generation with word control Focus: solving consistency and repetition issues while posting on LinkedIn.",
-      tech: "React, Tailwind, OpenRouter API (LLM integration)",
-      github: "https://github.com/Sarthak050205/linkedin-post-generator",
-      live: "https://linkedin-post-generator-silk.vercel.app",
-      path: "/project/linkedin-post-generator"
-    },
-    {
-      title: "Weather App (React)",
-      image: "/weather-react.png",
-      desc: "Fetches real-time weather data using API with loading and error handling.",
-      tech: "React, Tailwind, API",
-      github: "https://github.com/Sarthak050205/weather-app-react",
-      live: "https://weather-app-react-virid-three.vercel.app",
-      path: "/project/weather-react"
-    },
-    {
-      title: "Todo App (React Context API)",
-      image: "/todo-react.png",
-      desc: "Manage tasks with add, edit, delete, and mark as complete using Context API.",
-      tech: "React, Context API",
-      github: "https://github.com/Sarthak050205/todo-context-api",
-      live: "https://todo-context-api-deploy.vercel.app",
-      path: "/project/todo-react"
-    },
-    {
-      title: "Weather App (JavaScript)",
-      image: "/weather-js.png",
-      desc: "Weather application built using vanilla JavaScript and API integration.",
-      tech: "JavaScript, API",
-      github: "https://github.com/Sarthak050205/weather-app-js",
-      live: "https://weather-app-js-ivory.vercel.app/",
-      path: "/project/weather-js"
-    },
-    {
-      title: "Todo App (JavaScript)",
-      image: "/todo-js.png",
-      desc: "Basic todo app with add and delete functionality using JavaScript.",
-      tech: "JavaScript",
-      github: "https://github.com/Sarthak050205/Todo-app-js",
-      live: "https://todo-app-js-pink.vercel.app/",
-      path: "/project/todo-js"
-    },
-    {
-      title: "Tic Tac Toe",
-      image: "/tictactoe.png",
-      desc: "Classic tic tac toe game built using JavaScript with interactive UI.",
-      tech: "JavaScript",
-      github: "https://github.com/Sarthak050205/Tic-Tac-Toe-JS",
-      live: "https://tic-tac-toe-js-sigma.vercel.app/",
-      path: "/project/tictactoe"
-    },
-    {
-      title: "Netflix Clone",
-      image: "/netflix.png",
-      desc: "UI clone of Netflix homepage focusing on layout and responsiveness.",
-      tech: "HTML, CSS, JavaScript",
-      github: "https://github.com/Sarthak050205/Netflix-clone",
-      live: "https://netflix-clone-three-xi-57.vercel.app/",
-      path: "/project/netflix"
-    }
-  ]
+  const [active, setActive] = useState('All')
+
+  const filtered = active === 'All' ? projects : projects.filter(p => p.category === active)
 
   return (
-    <section className="px-10 py-16 bg-gray-50 min-h-screen">
-      
-      <h1 className="text-3xl font-bold text-center mb-10">
-        My Projects
-      </h1>
+    <div className="page-enter" style={{ fontFamily: 'var(--font-body)' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 24px 80px' }}>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        
-        {projects.map((project, index) => (
-          
-          <Link key={index} to={project.path}>
-            
-            <div className="bg-white rounded-xl shadow hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden group">
-              
-              {/* IMAGE */}
-              <div className="overflow-hidden">
+        {/* Header */}
+        <div style={{ marginBottom: 48 }}>
+          <span className="tag" style={{ marginBottom: 16, display: 'inline-block' }}>Portfolio</span>
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(36px, 5vw, 56px)',
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
+            color: '#fff',
+            margin: '16px 0 16px',
+            lineHeight: 1.05,
+          }}>
+            Things I've Built
+          </h1>
+          <p style={{ color: 'var(--clr-muted)', fontSize: 16 }}>
+            {projects.length} projects spanning React apps, JS tools, and UI clones.
+          </p>
+        </div>
+
+        {/* Filters */}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 40, flexWrap: 'wrap' }}>
+          {filters.map(f => (
+            <button
+              key={f}
+              onClick={() => setActive(f)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 999,
+                border: active === f ? '1px solid rgba(249,115,22,0.5)' : '1px solid rgba(255,255,255,0.1)',
+                background: active === f ? 'rgba(249,115,22,0.12)' : 'transparent',
+                color: active === f ? 'var(--clr-accent)' : 'var(--clr-muted)',
+                fontSize: 13,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                fontFamily: 'var(--font-body)',
+              }}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: 24,
+        }}>
+          {filtered.map((project, i) => (
+            <div key={project.title} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+              {/* Image */}
+              <div style={{ overflow: 'hidden', position: 'relative' }}>
+                {project.featured && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 12,
+                    left: 12,
+                    zIndex: 10,
+                    padding: '4px 12px',
+                    background: 'var(--clr-accent)',
+                    borderRadius: 999,
+                    fontSize: 10,
+                    fontWeight: 700,
+                    color: '#fff',
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                  }}>
+                    ⭐ Featured
+                  </div>
+                )}
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-40 object-cover group-hover:scale-105 transition duration-300"
+                  style={{
+                    width: '100%',
+                    height: 180,
+                    objectFit: 'cover',
+                    transition: 'transform 0.4s ease',
+                    display: 'block',
+                  }}
+                  onMouseEnter={e => e.target.style.transform = 'scale(1.04)'}
+                  onMouseLeave={e => e.target.style.transform = 'none'}
                 />
               </div>
 
-              {/* CONTENT */}
-              <div className="p-5">
-                <h2 className="text-lg font-semibold mb-2">
+              {/* Content */}
+              <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <h2 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 17,
+                  fontWeight: 700,
+                  color: '#fff',
+                  margin: '0 0 8px',
+                  letterSpacing: '-0.01em',
+                }}>
                   {project.title}
                 </h2>
 
-                <p className="text-gray-600 text-sm mb-3">
+                <p style={{
+                  color: 'var(--clr-muted)',
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                  margin: '0 0 16px',
+                  flex: 1,
+                }}>
                   {project.desc}
                 </p>
 
-                <p className="text-sm text-orange-600 mb-4">
-                  {project.tech}
-                </p>
+                {/* Tech tags */}
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+                  {project.tech.map(t => (
+                    <span key={t} className="tag" style={{ fontSize: 10 }}>{t}</span>
+                  ))}
+                </div>
 
-                {/* BUTTONS */}
-                <div className="flex gap-4">
-                  
+                {/* Buttons */}
+                <div style={{ display: 'flex', gap: 8 }}>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs bg-gray-800 text-white px-3 py-1 rounded"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      flex: 1,
+                      textAlign: 'center',
+                      padding: '8px 0',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      color: '#fff',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 500,
+                      textDecoration: 'none',
+                      transition: 'background 0.2s',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
                   >
                     GitHub
                   </a>
-
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs bg-orange-600 text-white px-3 py-1 rounded"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      flex: 1,
+                      textAlign: 'center',
+                      padding: '8px 0',
+                      background: 'var(--clr-accent)',
+                      color: '#fff',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      transition: 'opacity 0.2s',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
                   >
-                    Live
+                    Live ↗
                   </a>
-
                 </div>
-
               </div>
-
             </div>
+          ))}
+        </div>
 
-          </Link>
-
-        ))}
-
+        {filtered.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--clr-muted)' }}>
+            No projects in this category yet.
+          </div>
+        )}
       </div>
-
-    </section>
+    </div>
   )
 }
 
